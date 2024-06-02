@@ -1,0 +1,70 @@
+SISTEM INFORMASI PERPUSTAKAAN
+
+MODELS
+1. books
+   - id
+   - ISBN
+   - title
+   - author
+   - publisher
+   - release_date
+   - stock
+   - available_stock
+   - category_id
+   - created_at
+   - updated_at
+   - deleted_at
+   
+   book_childs
+   - id (generate pakai format)
+   - book_id
+   - status (available, unavailable)
+ 
+2. categories
+   - id
+   - title
+   - created_at
+   - updated_at
+   - deleted_at
+ 
+3. user
+   - id
+   - username
+   - password
+   - email
+   - fullname
+   - address
+   - photo_url
+   - phone_number
+   - sex
+   - borrowing_limit
+   - role_id
+   - last_login
+   - created_at
+   - updated_at
+   - deleted_at
+   
+4. roles
+   - id
+   - title
+   - created_at
+   - updated_at
+   - deleted_at
+   
+5. book_borrowings
+   - id
+   - user_id
+   - book_id
+   - book_child_id
+   - return_deadline (default satu minggu)
+   - status (pending, ready, taken, returned, canceled, rejected)
+   - created_at
+   - updated_at
+   - deleted_at
+   
+MENUS
+spreadsheet
+
+TAMBAHAN FITUR
+- buat akun banyak sekaligus dari file excel
+- change password (user)
