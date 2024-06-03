@@ -36,7 +36,7 @@ MODELS
    - address
    - photo_url
    - phone_number
-   - sex
+   - sex (0=cewel, 1=cowok)
    - borrowing_limit
    - role_id
    - last_login
@@ -54,7 +54,6 @@ MODELS
 5. book_borrowings
    - id
    - user_id
-   - book_id
    - book_child_id
    - return_deadline (default satu minggu)
    - status (pending, ready, taken, returned, canceled, rejected)
