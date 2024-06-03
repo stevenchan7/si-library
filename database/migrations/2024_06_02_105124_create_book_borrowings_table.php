@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('book_child_id')->constrained();
-            $table->date('return_deadline');
-            $table->enum('status', ['pending', 'ready', 'taken', 'returned', 'canceled', 'rejected']);
+            $table->date('return_deadline')->default(Carbon::now()->addWeek());
+            $table->enum('status', ['pending', 'ready', 'taken', 'returned', 'canceled', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }

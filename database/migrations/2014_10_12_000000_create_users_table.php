@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('photo_url');
             $table->string('phone_number');
             $table->boolean('sex');
-            $table->integer('borrowing_limit');
+            $table->integer('borrowing_limit')->default(5);
             $table->foreignId('role_id')->constrained();
             $table->dateTime('last_login')->nullable();
             $table->string('email')->unique();
