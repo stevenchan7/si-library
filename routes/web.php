@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BookBorrowingController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,14 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::post('/logout', function () {
-    return;
-})->name('logout');
+Route::prefix('auth')->group(function () {
+    Route::post('/logout', function () {
+        return;
+    })->name('logout');
+
+    Route::post('/login', LoginController::class)->name('login');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('borrow-book', [BookBorrowingController::class, 'store'])->name('borrow.book.post');
+});
