@@ -23,6 +23,10 @@ class Book extends Model
         'category_id'
     ];
 
+    protected $with = [
+        'category'
+    ];
+
     public function children(): HasMany
     {
         return $this->hasMany(BookChild::class);
@@ -30,6 +34,6 @@ class Book extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

@@ -22,7 +22,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return "HELLO WORLD";
     }
 
     /**
