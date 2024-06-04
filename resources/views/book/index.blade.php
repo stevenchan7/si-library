@@ -69,7 +69,7 @@
                             <td>{{ $book->category->title }}</td>
                             <td>
                                 <a href="/books/{{ $book->id }}/edit" class="badge bg-warning">Edit</span></a>
-                                <form action="#" method="post" class="d-inline">
+                                <form action="/books/{{ $book->id }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0" onclick="return confirm('Are you sure')">Delete</button>
