@@ -10,8 +10,15 @@
     {{-- Content placeholder here --}}
     <div class="row justify-content-end">
         <a href="/books/create" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new book</a>
-        </button>
     </div>
+
+    {{-- Flash message --}}
+    @if(session()->has('success'))
+    <div class="alert alert-success col-lg-12" role="alert">
+      {{ session('success') }}
+    </div>
+    @endif
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">

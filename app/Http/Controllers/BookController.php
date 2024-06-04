@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -22,7 +23,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        return "HELLO WORLD";
+        return view('book.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -30,7 +33,22 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required'],
+            'isbn' => ['required', 'unique:books'],
+            'author' => ['required'],
+            'publisher' => ['required'],
+            'release_date' => ['required'],
+            'stock' => ['required', 'integer', 'min:1'],
+            'category_id' => ['required']
+        ]);
+
+        $validatedData['available_stock'] = $request->stock;
+
+        //masukkan data ke database
+        Book::create($validatedData);
+
+        return redirect('/books')->with('success', 'New book added!');
     }
 
     /**
