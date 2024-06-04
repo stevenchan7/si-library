@@ -68,7 +68,7 @@
                             <td>{{ $book->available_stock }}</td>
                             <td>{{ $book->category->title }}</td>
                             <td>
-                                <a href="#" class="badge bg-warning">Edit</span></a>
+                                <a href="/books/{{ $book->id }}/edit" class="badge bg-warning">Edit</span></a>
                                 <form action="#" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf

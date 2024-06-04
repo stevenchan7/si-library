@@ -64,7 +64,10 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('book.edit',[
+            'book' => $book,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -72,7 +75,28 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $rules = [
+            'title' => ['required'],
+            'author' => ['required'],
+            'publisher' => ['required'],
+            'release_date' => ['required'],
+            'stock' => ['required', 'integer', 'min:1'],
+            'category_id' => ['required']
+        ];
+
+        //jika user mengganti isbn
+        if($request->isbn != $book->isbn){
+            $rules['isbn'] = ['required', 'unique:books'];
+        }
+
+        $validatedData = $request->validate($rules);
+
+        $validatedData['available_stock'] = $request->stock;
+
+        //masukkan data ke database
+        Book::where('id', $book->id)->update($validatedData);
+
+        return redirect('/books')->with('success', 'Book has been updated!');
     }
 
     /**
