@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookBorrowingController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,6 @@ Route::prefix('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('borrow-book', [BookBorrowingController::class, 'store'])->name('borrow.book.post');
 });
+
+// Book route
+Route::resource('/books', BookController::class);
