@@ -68,6 +68,7 @@
                             <td>{{ $book->available_stock }}</td>
                             <td>{{ $book->category->title }}</td>
                             <td>
+                                <a href="/books/{{ $book->id }}" class="btn btn-primary"><i class="bi bi-eye"></i> Detail</span></a>
                                 <a href="/books/{{ $book->id }}/edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</span></a>
                                 <form action="/books/{{ $book->id }}" method="post" class="d-inline">
                                 @method('delete')

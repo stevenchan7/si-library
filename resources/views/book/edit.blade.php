@@ -59,16 +59,6 @@
           </div>
 
           <div class="mb-3">
-            <label for="stock" class="form-label">Stock</label>
-            <input type="number" class="form-control col-lg-3 @error('stock') is-invalid @enderror" id="stock" name="stock" required value="{{ old('stock', $book->stock) }}">
-            @error('stock')
-            <div class="invalid-feedback">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-
-          <div class="mb-3">
             <label for="category" class="form-label">Category</label>
             <select class="form-control col-lg-3" name="category_id" id="category">
               @foreach($categories as $category)

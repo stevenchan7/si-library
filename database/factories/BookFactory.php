@@ -16,7 +16,7 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $stock = fake()->randomNumber(1) + 1;
+        $stock = 0;
         return [
             'title' => fake()->sentence(mt_rand(1, 6)),
             'isbn' => fake()->isbn10(),
@@ -24,7 +24,7 @@ class BookFactory extends Factory
             'publisher' => fake()->sentence(mt_rand(2, 3)),
             'release_date' => fake()->date(),
             'stock' => $stock,
-            'available_stock' => $stock - 1,
+            'available_stock' => $stock,
             'category_id' => mt_rand(1, 3)
         ];
     }

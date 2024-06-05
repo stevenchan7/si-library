@@ -39,11 +39,11 @@ class BookController extends Controller
             'author' => ['required'],
             'publisher' => ['required'],
             'release_date' => ['required'],
-            'stock' => ['required', 'integer', 'min:1'],
             'category_id' => ['required']
         ]);
 
-        $validatedData['available_stock'] = $request->stock;
+        $validatedData['available_stock'] = 0;
+        $validatedData['stock'] = 0;
 
         //masukkan data ke database
         Book::create($validatedData);
@@ -80,7 +80,6 @@ class BookController extends Controller
             'author' => ['required'],
             'publisher' => ['required'],
             'release_date' => ['required'],
-            'stock' => ['required', 'integer', 'min:1'],
             'category_id' => ['required']
         ];
 
