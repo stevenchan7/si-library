@@ -30,7 +30,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required', 'unique:categories'],
+        ]);
+
+        $validatedData['title'] = strtolower($request->title);
+
+        //masukkan data ke database
+        Category::create($validatedData);
+
+        return redirect('/categories')->with('success', 'New category added!');
     }
 
     /**
@@ -54,7 +63,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $rules = [];
+
+        //jika user mengganti category
+        if($request->title != $category->title){
+            $rules['title'] = ['required', 'unique:books'];
+        }
+
+        $validatedData = $request->validate($rules);
+
+        //masukkan data ke database
+        Category::where('id', $category->id)->update($validatedData);
+
+        return redirect('/categories')->with('success', 'Category has been updated!');
     }
 
     /**
@@ -62,6 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+        return redirect('/categories')->with('success', 'Category has been deleted');
     }
 }
