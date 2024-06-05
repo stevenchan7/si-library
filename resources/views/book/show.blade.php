@@ -37,8 +37,6 @@
 </div>
 @endif
 
-{{ $book_childrens }}
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -52,6 +50,7 @@
                         <th>#</th>
                         <th>ID</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -59,6 +58,7 @@
                         <th>#</th>
                         <th>ID</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
