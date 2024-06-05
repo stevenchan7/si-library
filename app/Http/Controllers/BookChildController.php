@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 
 class BookChildController extends Controller
 {
-    public function addChild(Request $request)
+    public function addChild(Book $books)
     {
         $data = [
-            'book_id' => $request->parent_book_id,
+            'book_id' => $books->id,
             'status' => 'available'
         ];
         
         BookChild::create($data);
 
-        return redirect('/books/'.$request->parent_book_id)->with('success', 'Book added!');
+        return redirect('/books/'.$books->id)->with('success', 'Book added!');
     }
 
     public function deleteChild(Request $request, Book $books)

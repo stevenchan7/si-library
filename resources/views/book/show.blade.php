@@ -30,8 +30,7 @@
     <form action="/books/{{ $book->id }}/add" method="post" class="d-inline">
         @csrf
         {{-- <a href="/books/{{ $book->id }}/add" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new book</a> --}}
-        <input type="hidden" value="{{ $book->id }}" name="parent_book_id">
-        <button type="submit" class="btn btn-primary mb-3 border-0" data-id={{ $book->id }}><i class="fa-regular fa-plus"></i> Add new book</button>
+        <button class="btn btn-primary mb-3 border-0" data-id={{ $book->id }}><i class="fa-regular fa-plus"></i> Add new book</button>
     </form>
 </div>
 
