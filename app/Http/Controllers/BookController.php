@@ -109,4 +109,9 @@ class BookController extends Controller
         Book::destroy($book->id);
         return redirect('/books')->with('success', 'Book has been deleted');
     }
+
+    public function addStock(Book $book)
+    {
+        //
+    }
 }

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BookBorrowingController;
+use App\Http\Controllers\BookChildController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
+use App\Models\BookChild;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +40,7 @@ Route::resource('/books', BookController::class);
 
 // Category route
 Route::resource('/categories', CategoryController::class);
+
+// Add child route
+Route::post('/books/{books:id}/add', [BookChildController::class, 'addChild']);
+Route::post('/books/{books:id}/delete',[BookChildController::class, 'deleteChild']);

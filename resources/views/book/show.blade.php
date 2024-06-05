@@ -27,8 +27,14 @@
 
 {{-- Content placeholder here --}}
 <div class="row justify-content-end">
-    <a href="/books/create" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new book</a>
+    <form action="/books/{{ $book->id }}/add" method="post" class="d-inline">
+        @csrf
+        {{-- <a href="/books/{{ $book->id }}/add" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new book</a> --}}
+        <input type="hidden" value="{{ $book->id }}" name="parent_book_id">
+        <button type="submit" class="btn btn-primary mb-3 border-0" data-id={{ $book->id }}><i class="fa-regular fa-plus"></i> Add new book</button>
+    </form>
 </div>
+
 
 {{-- Flash message --}}
 @if(session()->has('success'))
@@ -68,10 +74,11 @@
                         <td>{{ $children->id }}</td>
                         <td>{{ $children->status }}</td>
                         <td>
-                            <form action="/books/{{ $book->id }}" method="post" class="d-inline">
-                            @method('delete')
+                            <form action="/books/{{ $book->id }}/delete" method="post" class="d-inline">
                             @csrf
-                            <button class="btn btn-danger border-0" onclick="return confirm('Are you sure')"><i class="bi bi-trash3"></i> Delete</button>
+                            {{-- <input type="hidden" name="parent_id" value="{{ $->id }}"> --}}
+                            <input type="hidden" name="child_id" value="{{ $children->id }}">
+                            <button type="submit" class="btn btn-danger border-0" onclick="return confirm('Are you sure')"><i class="bi bi-trash3"></i> Delete</button>
                             </form>
                         </td>
                     </tr>
