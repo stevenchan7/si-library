@@ -68,11 +68,11 @@
                             <td>{{ $book->available_stock }}</td>
                             <td>{{ $book->category->title }}</td>
                             <td>
-                                <a href="/books/{{ $book->id }}/edit" class="badge bg-warning">Edit</span></a>
+                                <a href="/books/{{ $book->id }}/edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</span></a>
                                 <form action="/books/{{ $book->id }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure')">Delete</button>
+                                <button class="btn btn-danger border-0" onclick="return confirm('Are you sure')"><i class="bi bi-trash3"></i> Delete</button>
                                 </form>
                             </td>
                         </tr>

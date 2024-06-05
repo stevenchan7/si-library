@@ -27,11 +27,20 @@
         Interface
     </div>
 
-    <!-- Nav Item - Book menu -->
+    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="/books">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#bookCollapse"
+            aria-expanded="true" aria-controls="bookCollapse">
             <i class="bi bi-book"></i>
-            <span>Books</span></a>
+            <span>Books</span>
+        </a>
+        <div id="bookCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Book Actions:</h6>
+                <a class="collapse-item" href="/books">View Books</a>
+                <a class="collapse-item" href="/categories">View Categories</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -49,6 +58,7 @@
             </div>
         </div>
     </li>
+
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookBorrowingController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,6 @@ Route::middleware('auth')->group(function () {
 
 // Book route
 Route::resource('/books', BookController::class);
+
+// Category route
+Route::resource('/categories', CategoryController::class);
