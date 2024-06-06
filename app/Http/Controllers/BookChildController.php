@@ -20,7 +20,9 @@ class BookChildController extends Controller
         {
             $datas[] = [
                 'book_id' => $books->id,
-                'status' => 'available'
+                'status' => 'available',
+                'created_at' => now(),
+                'updated_at' => now()
             ];
         }
         BookChild::insert($datas);
