@@ -8,17 +8,25 @@ use Illuminate\Http\Request;
 
 class BookChildController extends Controller
 {
-    public function addChild(Book $books)
+    public function addChild(Book $books, Request $request)
     {
-        $data = [
-            'book_id' => $books->id,
-            'status' => 'available'
-        ];
-        
-        BookChild::create($data);
-        BookController::addStock($books);
+        $new_books = $request->validate([
+            'numberOfBooks' => ['required', 'min:1', 'integer']
+        ]);
+ 
+        $datas = [];
 
-        return redirect('/books/'.$books->id)->with('success', 'Book added!');
+        for($i = 0; $i < $request->numberOfBooks; $i++)
+        {
+            $datas[] = [
+                'book_id' => $books->id,
+                'status' => 'available'
+            ];
+        }
+        BookChild::insert($datas);
+        BookController::updateStock($books, $request->numberOfBooks);
+
+        return redirect('/books/'.$books->id)->with('success', 'Book(s) added!');
     }
 
     public function deleteChild(Request $request, Book $books)
@@ -30,7 +38,7 @@ class BookChildController extends Controller
         ];
         
         BookChild::destroy($request->child_id);
-        BookController::removeStock($books);
+        BookController::updateStock($books);
 
         return redirect('/books/'.$books->id)->with('success', 'Book deleted!');
     }

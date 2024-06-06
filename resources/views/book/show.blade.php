@@ -30,6 +30,13 @@
     <form action="/books/{{ $book->id }}/add" method="post" class="d-inline">
         @csrf
         {{-- <a href="/books/{{ $book->id }}/add" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new book</a> --}}
+        <label for="numberOfBooks" class="form-label">Number of books: </label>
+        <input type="text" class="form-control @error('numberOfBooks') is-invalid @enderror" id="numberOfBooks" name="numberOfBooks" required value="{{ old('numberOfBooks', 1) }}">
+        @error('numberOfBooks')
+        <div class="invalid-feedback">
+          {{ $message }}
+        </div>       
+        @enderror 
         <button class="btn btn-primary mb-3 border-0" data-id={{ $book->id }}><i class="fa-regular fa-plus"></i> Add new book</button>
     </form>
 </div>
