@@ -110,8 +110,25 @@ class BookController extends Controller
         return redirect('/books')->with('success', 'Book has been deleted');
     }
 
-    public function addStock(Book $book)
+    public static function addStock(Book $book)
     {
-        //
+        $data = [
+            'stock' => $book->stock + 1,
+            'available_stock' => $book->available_stock + 1
+        ];
+
+        //masukkan data ke database
+        Book::where('id', $book->id)->update($data);
+    }
+
+    public static function removeStock(Book $book)
+    {
+        $data = [
+            'stock' => $book->stock - 1,
+            'available_stock' => $book->available_stock - 1
+        ];
+
+        //masukkan data ke database
+        Book::where('id', $book->id)->update($data);
     }
 }

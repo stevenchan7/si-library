@@ -16,6 +16,7 @@ class BookChildController extends Controller
         ];
         
         BookChild::create($data);
+        BookController::addStock($books);
 
         return redirect('/books/'.$books->id)->with('success', 'Book added!');
     }
@@ -29,6 +30,7 @@ class BookChildController extends Controller
         ];
         
         BookChild::destroy($request->child_id);
+        BookController::removeStock($books);
 
         return redirect('/books/'.$books->id)->with('success', 'Book deleted!');
     }
