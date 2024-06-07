@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['username' => $validated['username'], 'password' => $validated['password']])) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin');
+            return redirect()->intended(route('home'));
         } else {
             return back()->withErrors(['credential' => 'Incorrect password']);
         }

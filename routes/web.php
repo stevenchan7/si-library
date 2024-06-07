@@ -5,6 +5,7 @@ use App\Http\Controllers\BookChildController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Models\BookChild;
 use Illuminate\Support\Facades\Route;
 
@@ -19,28 +20,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('auth')->group(function () {
+    Route::post('/logout', LogoutController::class)->name('logout');
+
+    Route::get('/login', function () {
+        return view('auth/login');
+    })->name('login');
+
+    Route::post('/login', LoginController::class)->name('authenticate');
+});
+
 Route::get('/', function () {
     return view('index');
-})->name('home');
+})->middleware('auth')->name('home');
 
-Route::prefix('auth')->group(function () {
-    Route::post('/logout', function () {
-        return;
-    })->name('logout');
-
-    Route::post('/login', LoginController::class)->name('login');
+Route::prefix('/books')->middleware('auth')->group(function () {
+    Route::get('/', [BookController::class, 'index'])->name('books.index');
+    Route::get('/{book}', [BookController::class, 'show'])->name('books.show');
 });
 
 Route::middleware('auth')->group(function () {
     Route::post('borrow-book', [BookBorrowingController::class, 'store'])->name('borrow.book.post');
 });
 
-// Book route
-Route::resource('/books', BookController::class);
+Route::middleware(['auth', 'auth.librarian'])->group(function () {
+    // Book route
+    Route::prefix('/books')->group(function () {
+        Route::get('/create', [BookController::class, 'create'])->name('books.create');
+        Route::post('/', [BookController::class, 'store'])->name('books.store');
+        Route::get('/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
+        Route::put('/{book}', [BookController::class, 'update'])->name('books.update');
+        Route::delete('/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+    });
 
-// Category route
-Route::resource('/categories', CategoryController::class);
+    // Category route
+    Route::resource('/categories', CategoryController::class);
 
-// Add child route
-Route::post('/books/{books:id}/add', [BookChildController::class, 'addChild']);
-Route::post('/books/{books:id}/delete',[BookChildController::class, 'deleteChild']);
+    // Add child route
+    Route::post('/books/{book}/add', [BookChildController::class, 'addChild'])->name('books.addChild');
+    Route::post('/books/{book}/delete', [BookChildController::class, 'deleteChild'])->name('books.delChild');
+});

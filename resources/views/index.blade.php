@@ -1,6 +1,6 @@
 <x-layouts.layout>
     @section('title')
-    <title>Djanbary - Dashboard</title>
+    <title>Djanbrary - Dashboard</title>
     @endsection
     @section('css')
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
