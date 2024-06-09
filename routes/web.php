@@ -40,7 +40,10 @@ Route::prefix('/books')->middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('borrow-book', [BookBorrowingController::class, 'store'])->name('borrow.book.post');
+    Route::get('borrow-book', [BookBorrowingController::class, 'index'])->name('borrow.index');
+    Route::post('borrow-book', [BookBorrowingController::class, 'store'])->name('borrow.post');
+    Route::post('borrow-book/update', [BookBorrowingController::class, 'update'])->name('borrow.update');
+    Route::delete('borrowing-book', [BookBorrowingController::class, 'destroy'])->name('borrow.delete');
 });
 
 Route::middleware(['auth', 'auth.librarian'])->group(function () {

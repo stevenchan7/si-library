@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -14,7 +15,8 @@ class BookController extends Controller
     public function index()
     {
         return view('book.index', [
-            'books' => Book::all()
+            'books' => Book::all(),
+            'role' => Auth::user()->role->title
         ]);
     }
 
@@ -67,7 +69,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('book.edit',[
+        return view('book.edit', [
             'book' => $book,
             'categories' => Category::all()
         ]);
@@ -87,7 +89,7 @@ class BookController extends Controller
         ];
 
         //jika user mengganti isbn
-        if($request->isbn != $book->isbn){
+        if ($request->isbn != $book->isbn) {
             $rules['isbn'] = ['required', 'unique:books'];
         }
 
