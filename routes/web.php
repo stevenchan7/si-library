@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('borrowing-book', [BookBorrowingController::class, 'destroy'])->name('borrow.delete');
 });
 
-Route::middleware(['auth', 'auth.librarian'])->group(function () {
+Route::middleware(['auth', 'auth.librarianOrAdmin'])->group(function () {
     // Book route
     Route::prefix('/books')->group(function () {
         Route::get('/create', [BookController::class, 'create'])->name('books.create');
