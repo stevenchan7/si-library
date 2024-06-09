@@ -19,7 +19,9 @@ class BookChildController extends Controller
         for ($i = 0; $i < $request->numberOfBooks; $i++) {
             $datas[] = [
                 'book_id' => $book->id,
-                'status' => 'available'
+                'status' => 'available',
+                'created_at' => now(),
+                'updated_at' => now()
             ];
         }
         BookChild::insert($datas);

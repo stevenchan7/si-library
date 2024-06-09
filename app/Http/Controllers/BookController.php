@@ -94,9 +94,7 @@ class BookController extends Controller
         }
 
         $validatedData = $request->validate($rules);
-
-        $validatedData['available_stock'] = $request->stock;
-
+        
         //masukkan data ke database
         Book::where('id', $book->id)->update($validatedData);
 
