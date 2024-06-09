@@ -24,5 +24,29 @@ class UserSeeder extends Seeder
             'role_id' => 1,
             'username' => 'ryanh'
         ]);
+
+        User::create([
+            'fullname' => 'Steven Chan',
+            'email' => 'steven@student.com',
+            'password' => 'steven',
+            'address' => 'alamat steven',
+            'photo_url' => 'url',
+            'phone_number' => '1234567890',
+            'sex' => 1,
+            'role_id' => 2,
+            'username' => 'stevenc'
+        ]);
+
+        User::create([
+            'fullname' => 'Gemuh Raharja',
+            'email' => 'gemuh@student.com',
+            'password' => 'gemuh',
+            'address' => 'alamat gemuh',
+            'photo_url' => 'url',
+            'phone_number' => '1234567890',
+            'sex' => 1,
+            'role_id' => 3,
+            'username' => 'gemuhr'
+        ]);
     }
 }
