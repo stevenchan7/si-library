@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('book_child_id')->constrained();
             $table->date('return_deadline')->default(Carbon::now()->addWeek());
-            $table->enum('status', ['pending', 'ready', 'taken', 'returned', 'canceled', 'rejected'])->default('pending');
+            $table->enum('status', ['pending', 'ready', 'taken', 'returned', 'canceled', 'rejected', 'done'])->default('pending');
             $table->timestamps();
         });
     }
