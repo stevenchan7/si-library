@@ -4,10 +4,12 @@ use App\Http\Controllers\BookBorrowingController;
 use App\Http\Controllers\BookChildController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Models\BookChild;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +32,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/login', LoginController::class)->name('authenticate');
 });
 
-Route::get('/', function () {
-    return view('index');
-})->middleware('auth')->name('home');
+Route::get('/', DashboardController::class)->middleware('auth')->name('home');
 
 Route::prefix('/books')->middleware('auth')->group(function () {
     Route::get('/', [BookController::class, 'index'])->name('books.index');
