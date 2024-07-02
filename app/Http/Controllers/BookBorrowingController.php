@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\BookBorrowing;
 use App\Models\BookChild;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -72,7 +73,7 @@ class BookBorrowingController extends Controller
         // Cek apakah user sedang meminjam buku ini
         $userBooks = $request->user()->books;
         foreach ($userBooks as $book) {
-            if ($book->parent->id == $validated['bookId']) {
+            if ($book->parent->id == $validated['bookId'] && $book->pivot->status != 'done') {
                 return back()->with('error', 'Already borrowed this book');
             }
         }
@@ -119,6 +120,8 @@ class BookBorrowingController extends Controller
         // Change status
         $bookChild->status = 'unavailable';
         $bookChild->save();
+        // Substract user borrowing limit
+        $request->user()->borrowing_limit--;
 
         // return response()->json([
         //     'success' => true,
@@ -198,7 +201,12 @@ class BookBorrowingController extends Controller
         $book->parent->available_stock++;
         $book->parent->save();
 
-        $borrowing->delete();
+        $borrowing->status = 'done';
+        $borrowing->save();
+
+        // Add user borrowing limit
+        $user = User::findOrFail($borrowing->user_id);
+        $user->borrowing_limit++;
 
         return back()->with('success', 'Delete success');
     }

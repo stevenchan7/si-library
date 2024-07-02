@@ -60,6 +60,7 @@ class User extends Authenticatable
 
     public function books(): BelongsToMany
     {
-        return $this->belongsToMany(BookChild::class, 'book_borrowings');
+        return $this->belongsToMany(BookChild::class, 'book_borrowings')
+            ->withPivot('status'); // Get status from book_borrowings table
     }
 }
