@@ -25,6 +25,12 @@
     </div>
     @enderror
 
+    @session('success')
+    <div class="alert alert-success col-lg-12" role="alert">
+        {{ $value }}
+    </div>
+    @endsession
+
     <div class="container">
         {{-- Login form --}}
         <form action="{{ route('authenticate') }}" method="POST">
@@ -34,7 +40,7 @@
                 <div class="form-group">
                     <label for="usernameInput">Username</label>
                     <input type="text" class="form-control" id="usernameInput" name="username"
-                        aria-describedby="emailHelp" placeholder="Enter email">
+                        aria-describedby="emailHelp" placeholder="Enter username">
                 </div>
                 <div class="form-group">
                     <label for="passwordInput">Password</label>

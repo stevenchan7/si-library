@@ -24,6 +24,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('new_user');
 
 Route::get('/books/create', [BookController::class, 'create'])
     ->middleware(['auth', 'auth.librarianOrAdmin'])

@@ -27,14 +27,14 @@
 
     <div class="container">
         {{-- Login form --}}
-        <form action="{{ route('authenticate') }}" method="POST">
+        <form action="{{ route('new_user') }}" method="POST">
             @csrf
             <div class="mx-auto mt-4" style="max-width: 50%">
                 <h1><b>Register to Djanbrary</b></h1>
                 <div class="form-group">
                     <label for="fullNameInput">Full Name</label>
                     <input type="text" class="form-control @error('fullname') is-invalid @enderror" value="{{ old('fullname') }}" id="fullNameInput" name="fullname"
-                        aria-describedby="emailHelp" placeholder="Enter full name">
+                        aria-describedby="emailHelp" placeholder="Enter full name" required>
                     @error('fullname')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -43,8 +43,8 @@
                 </div>
                 <div class="form-group">
                     <label for="usernameInput">Email</label>
-                    <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="emailInput" name="email"
-                        aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="emailInput" name="email"
+                        aria-describedby="emailHelp" placeholder="Enter email" required>
                     @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label for="usernameInput">Username</label>
                     <input type="text" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" id="usernameInput" name="username"
-                    aria-describedby="emailHelp" placeholder="Enter username">
+                    aria-describedby="emailHelp" placeholder="Enter username" required>
                     @error('username')
                     <div class="invalid-feedback">
                       {{ $message }}
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label for="passwordInput">Password</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" id="passwordInput" name="password"
-                    placeholder="Password">
+                    placeholder="Password" required>
                     @error('password')
                     <div class="invalid-feedback">
                       {{ $message }}
@@ -73,9 +73,9 @@
                 </div>
                 <div class="form-group">
                     <label for="addressInput">Address</label>
-                    <input type="text" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" id="addressInput" name="address"
-                        aria-describedby="emailHelp" placeholder="Enter address">
-                    @error('password')
+                    <input type="text" class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" id="addressInput" name="address"
+                        aria-describedby="emailHelp" placeholder="Enter address" required>
+                    @error('address')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -83,9 +83,9 @@
                 </div>
                 <div class="form-group">
                     <label for="phoneInput">Phone number</label>
-                    <input type="text" class="form-control @error('phonenumber') is-invalid @enderror" value="{{ old('phonenumber') }}" id="phoneInput" name="phonenumber"
-                        aria-describedby="emailHelp" placeholder="Enter phone number">
-                        @error('phonenumber')
+                    <input type="text" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number') }}" id="phoneInput" name="phone_number"
+                        aria-describedby="emailHelp" placeholder="Enter phone number" required>
+                        @error('phone_number')
                         <div class="invalid-feedback">
                           {{ $message }}
                         </div>
