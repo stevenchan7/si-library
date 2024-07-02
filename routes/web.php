@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Models\BookChild;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -23,8 +24,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+//register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('new_user');
+
+//cek user (tambahin middleware admin)
+Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::post('/users/{user:id}', [UserController::class, 'update'])->name('update_role');
 
 Route::get('/books/create', [BookController::class, 'create'])
     ->middleware(['auth', 'auth.librarianOrAdmin'])
