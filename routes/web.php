@@ -62,4 +62,11 @@ Route::middleware(['auth', 'auth.librarianOrAdmin'])->group(function () {
     // Add child route
     Route::post('/books/{book}/add', [BookChildController::class, 'addChild'])->name('books.addChild');
     Route::post('/books/{book}/delete', [BookChildController::class, 'deleteChild'])->name('books.delChild');
+
+    Route::prefix('/users')->group(function () {
+        Route::get('/create', [BookController::class, 'create'])->name('users.create');
+        Route::get('/{users}/edit', [BookController::class, 'edit'])->name('users.edit');
+        Route::put('/{users}', [BookController::class, 'update'])->name('users.update');
+        Route::delete('/{users}', [BookController::class, 'destroy'])->name('users.destroy');
+    });
 });
