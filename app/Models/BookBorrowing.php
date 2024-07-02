@@ -22,4 +22,9 @@ class BookBorrowing extends Model
     {
         return $this->belongsTo(BookChild::class, 'book_child_id');
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -16,7 +16,8 @@
 {{-- Content placeholder here --}}
 @if (in_array($role, array('librarian', 'admin')))
 <div class="row justify-content-end">
-    <a href="/books/create" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new book</a>
+    <a href="{{ route('books.create') }}" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new
+        book</a>
 </div>
 @endif
 
@@ -188,6 +189,7 @@
 
         // Handle modal open
         $('#borrowModal').on('show.bs.modal', function (event) {
+            console.log('aksnjkdabnsd');
             var button = $(event.relatedTarget); // Button that triggered the modal
             var book = button.data('book');
             console.log(book);

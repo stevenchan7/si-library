@@ -74,12 +74,9 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 <th>Action</th>
@@ -88,12 +85,9 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 <th>Action</th>
@@ -103,12 +97,9 @@
                             @foreach ($borrowings['pending'] as $borrowing)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $borrowing->book->id }}</td>
                                 <td>{{ $borrowing->book->parent->title }}</td>
-                                <td>{{ $borrowing->book->parent->isbn }}</td>
-                                <td>{{ $borrowing->book->parent->author }}</td>
-                                <td>{{ $borrowing->book->parent->publisher }}</td>
-                                <td>{{ $borrowing->book->parent->release_date }}</td>
-                                <td>{{ $borrowing->book->parent->category->title }}</td>
+                                <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
                                 <td>
@@ -155,12 +146,9 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 <th>Action</th>
@@ -169,12 +157,9 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 <th>Action</th>
@@ -184,12 +169,9 @@
                             @foreach ($borrowings['ready'] as $borrowing)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $borrowing->book->id }}</td>
                                 <td>{{ $borrowing->book->parent->title }}</td>
-                                <td>{{ $borrowing->book->parent->isbn }}</td>
-                                <td>{{ $borrowing->book->parent->author }}</td>
-                                <td>{{ $borrowing->book->parent->publisher }}</td>
-                                <td>{{ $borrowing->book->parent->release_date }}</td>
-                                <td>{{ $borrowing->book->parent->category->title }}</td>
+                                <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
                                 <td>
@@ -225,12 +207,9 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 @if (in_array($role, array('librarian', 'admin')))
@@ -241,12 +220,9 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 @if (in_array($role, array('librarian', 'admin')))
@@ -258,12 +234,9 @@
                             @foreach ($borrowings['taken'] as $borrowing)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $borrowing->book->id }}</td>
                                 <td>{{ $borrowing->book->parent->title }}</td>
-                                <td>{{ $borrowing->book->parent->isbn }}</td>
-                                <td>{{ $borrowing->book->parent->author }}</td>
-                                <td>{{ $borrowing->book->parent->publisher }}</td>
-                                <td>{{ $borrowing->book->parent->release_date }}</td>
-                                <td>{{ $borrowing->book->parent->category->title }}</td>
+                                <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
                                 @if (in_array($role, array('librarian', 'admin')))
@@ -290,12 +263,9 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 <th>Action</th>
@@ -304,12 +274,9 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
                                 <th>Action</th>
@@ -319,12 +286,9 @@
                             @foreach ($borrowings['returned'] as $borrowing)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $borrowing->book->id }}</td>
                                 <td>{{ $borrowing->book->parent->title }}</td>
-                                <td>{{ $borrowing->book->parent->isbn }}</td>
-                                <td>{{ $borrowing->book->parent->author }}</td>
-                                <td>{{ $borrowing->book->parent->publisher }}</td>
-                                <td>{{ $borrowing->book->parent->release_date }}</td>
-                                <td>{{ $borrowing->book->parent->category->title }}</td>
+                                <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
                                 <td>
@@ -348,39 +312,32 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach ($borrowings['canceled'] as $borrowing)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $borrowing->book->id }}</td>
                                 <td>{{ $borrowing->book->parent->title }}</td>
-                                <td>{{ $borrowing->book->parent->isbn }}</td>
-                                <td>{{ $borrowing->book->parent->author }}</td>
-                                <td>{{ $borrowing->book->parent->publisher }}</td>
-                                <td>{{ $borrowing->book->parent->release_date }}</td>
-                                <td>{{ $borrowing->book->parent->category->title }}</td>
+                                <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
                             </tr>
@@ -394,39 +351,32 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
+                                <th>Student</th>
                                 <th>Borrow date</th>
                                 <th>Returned date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>No.</th>
-                                <th>Title</th>
-                                <th>ISBN</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Release Date</th>
-                                <th>Category</th>
-                                <th>Borrow date</th>
-                                <th>Returned date</th>
+                                <<th>No.</th>
+                                    <th>Book ID</th>
+                                    <th>Title</th>
+                                    <th>Student</th>
+                                    <th>Borrow date</th>
+                                    <th>Returned date</th>
+                                    <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach ($borrowings['rejected'] as $borrowing)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $borrowing->book->id }}</td>
                                 <td>{{ $borrowing->book->parent->title }}</td>
-                                <td>{{ $borrowing->book->parent->isbn }}</td>
-                                <td>{{ $borrowing->book->parent->author }}</td>
-                                <td>{{ $borrowing->book->parent->publisher }}</td>
-                                <td>{{ $borrowing->book->parent->release_date }}</td>
-                                <td>{{ $borrowing->book->parent->category->title }}</td>
+                                <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
                             </tr>

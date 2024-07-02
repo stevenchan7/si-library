@@ -22,6 +22,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+Route::get('/books/create', [BookController::class, 'create'])
+    ->middleware(['auth', 'auth.librarianOrAdmin'])
+    ->name('books.create');
+
 Route::prefix('auth')->group(function () {
     Route::post('/logout', LogoutController::class)->name('logout');
 
@@ -49,7 +53,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'auth.librarianOrAdmin'])->group(function () {
     // Book route
     Route::prefix('/books')->group(function () {
-        Route::get('/create', [BookController::class, 'create'])->name('books.create');
+        // Route::get('/create', [BookController::class, 'create'])->name('books.create');
         Route::post('/', [BookController::class, 'store'])->name('books.store');
         Route::get('/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
         Route::put('/{book}', [BookController::class, 'update'])->name('books.update');

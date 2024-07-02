@@ -94,7 +94,7 @@ class BookController extends Controller
         }
 
         $validatedData = $request->validate($rules);
-        
+
         //masukkan data ke database
         Book::where('id', $book->id)->update($validatedData);
 
