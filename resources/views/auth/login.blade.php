@@ -30,6 +30,7 @@
         <form action="{{ route('authenticate') }}" method="POST">
             @csrf
             <div class="mx-auto mt-4" style="max-width: 50%">
+                <h1><b>Login to Djanbrary</b></h1>
                 <div class="form-group">
                     <label for="usernameInput">Username</label>
                     <input type="text" class="form-control" id="usernameInput" name="username"
@@ -44,6 +45,7 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div> --}}
+                <h6>Not registered yet?  <a href="{{ route('register') }}">Register Here</a></h6>
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
