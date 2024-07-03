@@ -9,8 +9,10 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+        @if (Auth::user()->role->title == 'admin')
+        <a href="{{ route('generateReport') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        @endif
     </div>
 
     <!-- Content Row -->
@@ -57,6 +59,7 @@
 
     <div class="row">
 
+        @if (Auth::user()->role->title == 'librarian' || Auth::user()->role->title == 'admin')
         <!-- Area Chart -->
         <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
@@ -86,6 +89,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <!-- Pie Chart -->
         <div class="col-xl-4 col-lg-5">
