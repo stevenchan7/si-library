@@ -5,6 +5,8 @@ use App\Http\Controllers\BookChildController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GenerateReport;
+use App\Http\Controllers\GenerateReportController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
@@ -77,3 +79,7 @@ Route::middleware(['auth', 'auth.librarianOrAdmin'])->group(function () {
     Route::post('/books/{book}/add', [BookChildController::class, 'addChild'])->name('books.addChild');
     Route::post('/books/{book}/delete', [BookChildController::class, 'deleteChild'])->name('books.delChild');
 });
+
+Route::get('/generate-report', GenerateReportController::class)
+    ->middleware(['auth', 'auth.admin'])
+    ->name('generateReport');
