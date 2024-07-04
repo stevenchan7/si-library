@@ -26,29 +26,33 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-//register
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('new_user');
+Route::middleware(['auth', 'auth.admin'])->group(function () {
+    // User management
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::post('/users/{user:id}', [UserController::class, 'update'])->name('update_role');
+    // Report
+    Route::get('/generate-report', GenerateReportController::class)->name('generateReport');
+});
 
-//cek user (tambahin middleware admin)
-Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::post('/users/{user:id}', [UserController::class, 'update'])->name('update_role');
+Route::prefix('auth')->group(function () {
+    // Register
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('new_user');
+    // Login
+    Route::get('/login', function () {
+        return view('auth/login');
+    })->name('login');
+    Route::post('/login', LoginController::class)->name('authenticate');
+    // Logout
+    Route::post('/logout', LogoutController::class)->name('logout');
+});
+
+// Dashboard
+Route::get('/', DashboardController::class)->middleware('auth')->name('home');
 
 Route::get('/books/create', [BookController::class, 'create'])
     ->middleware(['auth', 'auth.librarianOrAdmin'])
     ->name('books.create');
-
-Route::prefix('auth')->group(function () {
-    Route::post('/logout', LogoutController::class)->name('logout');
-
-    Route::get('/login', function () {
-        return view('auth/login');
-    })->name('login');
-
-    Route::post('/login', LoginController::class)->name('authenticate');
-});
-
-Route::get('/', DashboardController::class)->middleware('auth')->name('home');
 
 Route::prefix('/books')->middleware('auth')->group(function () {
     Route::get('/', [BookController::class, 'index'])->name('books.index');
@@ -59,13 +63,12 @@ Route::middleware('auth')->group(function () {
     Route::get('borrow-book', [BookBorrowingController::class, 'index'])->name('borrow.index');
     Route::post('borrow-book', [BookBorrowingController::class, 'store'])->name('borrow.post');
     Route::post('borrow-book/update', [BookBorrowingController::class, 'update'])->name('borrow.update');
-    Route::delete('borrowing-book', [BookBorrowingController::class, 'destroy'])->name('borrow.delete');
 });
 
 Route::middleware(['auth', 'auth.librarianOrAdmin'])->group(function () {
     // Book route
     Route::prefix('/books')->group(function () {
-        // Route::get('/create', [BookController::class, 'create'])->name('books.create');
+        // Route::get('/create', [BookController::class, 'create'])->name('books.create'); Move to top
         Route::post('/', [BookController::class, 'store'])->name('books.store');
         Route::get('/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
         Route::put('/{book}', [BookController::class, 'update'])->name('books.update');
@@ -78,8 +81,7 @@ Route::middleware(['auth', 'auth.librarianOrAdmin'])->group(function () {
     // Add child route
     Route::post('/books/{book}/add', [BookChildController::class, 'addChild'])->name('books.addChild');
     Route::post('/books/{book}/delete', [BookChildController::class, 'deleteChild'])->name('books.delChild');
-});
 
-Route::get('/generate-report', GenerateReportController::class)
-    ->middleware(['auth', 'auth.admin'])
-    ->name('generateReport');
+    // Borrow book control
+    Route::delete('borrow-book', [BookBorrowingController::class, 'destroy'])->name('borrow.delete');
+});

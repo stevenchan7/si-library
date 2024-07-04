@@ -52,13 +52,13 @@
         </a>
     </li>
 
-    @if (in_array(Auth::user()->role->title, array('librarian', 'admin')))
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('users')}}">
-                <i class="bi bi-person"></i>
-                <span>Users</span>
-            </a>
-        </li>
+    @if (Auth::user()->role->title == 'admin')
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('users')}}">
+            <i class="bi bi-person"></i>
+            <span>Users</span>
+        </a>
+    </li>
     @endif
 
     <!-- Divider -->

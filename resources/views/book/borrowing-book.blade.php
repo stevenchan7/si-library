@@ -340,6 +340,16 @@
                                 <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
+                                <td>
+                                    <form action="{{ route('borrow.delete') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $borrowing->id }}">
+                                        <button class="btn btn-danger d-flex" style="gap: 0.25rem"
+                                            onclick="return confirm('Are you sure?')"><i class="bi bi-trash3"></i>
+                                            Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -361,13 +371,13 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <<th>No.</th>
-                                    <th>Book ID</th>
-                                    <th>Title</th>
-                                    <th>Student</th>
-                                    <th>Borrow date</th>
-                                    <th>Returned date</th>
-                                    <th>Action</th>
+                                <th>No.</th>
+                                <th>Book ID</th>
+                                <th>Title</th>
+                                <th>Student</th>
+                                <th>Borrow date</th>
+                                <th>Returned date</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -379,6 +389,16 @@
                                 <td>{{ $borrowing->user->fullname }}</td>
                                 <td>{{ $borrowing->created_at->format('Y-m-d') }}</td>
                                 <td>{{ $borrowing->return_deadline }}</td>
+                                <td>
+                                    <form action="{{ route('borrow.delete') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $borrowing->id }}">
+                                        <button class="btn btn-danger d-flex" style="gap: 0.25rem"
+                                            onclick="return confirm('Are you sure?')"><i class="bi bi-trash3"></i>
+                                            Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
