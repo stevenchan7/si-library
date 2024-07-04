@@ -36,6 +36,8 @@ class BookBorrowingController extends Controller
             }
         }
 
+        // dd($borrowings);
+
         return view('book.borrowing-book')
             ->with('borrowings', $borrowings)
             ->with('role', Auth::user()->role->title);
