@@ -5,13 +5,15 @@
     <div class="row my-3">
         <div class="col-lg-8">
             <a href="/books" class="btn btn-primary"><i class="bi bi-arrow-return-left"></i> Back</a>
-            <a href="/books/{{ $book->id }}/edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
             <form action="/books/{{ $book->id }}" method="post" class="d-inline">
+                <a href="/books/{{ $book->id }}/edit" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                 @method('delete')
                 @csrf
                 <button class="btn btn-danger" onclick="return confirm('Are you sure')"><i class="bi bi-trash5"></i>
                     Delete</button>
-            </form>
+                </form>
+                <a href="/generate-book-log/{{ $book->id }}" class="btn btn-info"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 
             <h1 class="mb-3 mt-3">Title : {{ $book->title }}</h1>
 

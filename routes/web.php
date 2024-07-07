@@ -33,7 +33,8 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     // Report
     Route::get('/generate-report', [GenerateReportController::class, 'GenerateGeneralReport'])->name('generateReport');
     Route::get('/generate-log-report', [GenerateReportController::class, 'GenerateLogReport'])->name('generateLogReport');
-    Route::get('/getnerate-book-report', [GenerateReportController::class, 'GenerateBookReport'])->name('generateBookReport');
+    Route::get('/generate-book-report', [GenerateReportController::class, 'GenerateBookReport'])->name('generateBookReport');
+    Route::get('/generate-book-log/{book:id}', [GenerateReportController::class, 'GenerateBookLogReport']);
 });
 
 Route::prefix('auth')->group(function () {

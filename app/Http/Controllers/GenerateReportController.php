@@ -79,4 +79,22 @@ class GenerateReportController extends Controller
         $pdf = Pdf::loadView('pdf.bookreport', $data);
         return $pdf->stream();
     }
+
+    public function GenerateBookLogReport(Request $request, Book $book)
+    {
+        $today = date("Y-m-d H:i:s");
+        $parentBookId = $book->id;
+        $borrowings = BookBorrowing::whereHas('book', function ($query) use ($parentBookId) {
+            $query->where('book_id', $parentBookId);
+        })->orderBy('updated_at', 'asc')->get();
+
+        $data = array(
+            'date' => $today,
+            'book' => $book,
+            'borrowings' => $borrowings
+        );
+
+        $pdf = Pdf::loadView('pdf.booklogreport', $data);
+        return $pdf->stream();
+    }
 }
