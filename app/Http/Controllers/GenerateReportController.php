@@ -54,13 +54,29 @@ class GenerateReportController extends Controller
     {
         $today = date("Y-m-d H:i:s");
         $borrowingLog = BookBorrowing::all();
+        $books = Book::all();
 
         $data = array(
             'date' => $today,
-            'borrowingLog' => $borrowingLog
+            'borrowingLog' => $borrowingLog,
+            'books' => $books
         );
 
         $pdf = Pdf::loadView('pdf.borrowinglog', $data);
+        return $pdf->stream();
+    }
+
+    public function GenerateBookReport(Request $request)
+    {
+        $today = date("Y-m-d H:i:s");
+        $books = Book::all();
+
+        $data = array(
+            'date' => $today,
+            'books' => $books
+        );
+
+        $pdf = Pdf::loadView('pdf.bookreport', $data);
         return $pdf->stream();
     }
 }

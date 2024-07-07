@@ -14,9 +14,16 @@
 <h5>Book</h5>
 
 {{-- Content placeholder here --}}
+@if (Auth::user()->role->title == 'admin')
+<div class="row justify-content-end">
+    <a href="{{ route('generateBookReport') }}" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Generate Report</a>
+</div>
+@endif
+
+{{-- Content placeholder here --}}
 @if (in_array($role, array('librarian', 'admin')))
 <div class="row justify-content-end">
-    <a href="{{ route('books.create') }}" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Add new
+    <a href="{{ route('books.create') }}" class="btn btn-info mb-3"><i class="fa-regular fa-plus"></i> Add new
         book</a>
 </div>
 @endif
