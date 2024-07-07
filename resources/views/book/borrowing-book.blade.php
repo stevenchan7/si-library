@@ -33,6 +33,20 @@
         @endsession
     </div>
 
+    {{-- Content placeholder here --}}
+    @if (Auth::user()->role->title == 'admin')
+    <div class="row justify-content-end">
+        <a href="{{ route('generateLogReport') }}" class="btn btn-primary mb-3"><i class="fa-regular fa-plus"></i> Generate Report</a>
+    </div>
+    @endif
+    {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        @if (Auth::user()->role->title == 'admin')
+        <a href="{{ route('generateReport') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        @endif
+    </div> --}}
+
     {{-- Nav buttons --}}
     <ul class="nav nav-tabs">
         <li class="nav-item">

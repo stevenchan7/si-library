@@ -15,7 +15,7 @@ class GenerateReportController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function GenerateGeneralReport(Request $request)
     {
         $books = Book::all();
         $categories = Category::all();
@@ -43,10 +43,24 @@ class GenerateReportController extends Controller
             'bookTotal' => $bookTotal,
             'categoryTotal' => $categoryTotal,
             'stock' => $stock,
-            'bookBorrowingPerMonth' => $bookBorrowingPerMonth
+            'bookBorrowingPerMonth' => $bookBorrowingPerMonth,
         );
 
         $pdf = Pdf::loadView('pdf.report', $data);
+        return $pdf->stream();
+    }
+
+    public function GenerateLogReport(Request $request)
+    {
+        $today = date("Y-m-d H:i:s");
+        $borrowingLog = BookBorrowing::all();
+
+        $data = array(
+            'date' => $today,
+            'borrowingLog' => $borrowingLog
+        );
+
+        $pdf = Pdf::loadView('pdf.borrowinglog', $data);
         return $pdf->stream();
     }
 }

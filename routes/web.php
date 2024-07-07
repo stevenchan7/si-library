@@ -31,7 +31,8 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::post('/users/{user:id}', [UserController::class, 'update'])->name('update_role');
     // Report
-    Route::get('/generate-report', GenerateReportController::class)->name('generateReport');
+    Route::get('/generate-report', [GenerateReportController::class, 'GenerateGeneralReport'])->name('generateReport');
+    Route::get('/generate-log-report', [GenerateReportController::class, 'GenerateLogReport'])->name('generateLogReport');
 });
 
 Route::prefix('auth')->group(function () {
