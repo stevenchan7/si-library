@@ -95,53 +95,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Book Title</th>
-                                <th>ISBN</th>
-                                <th>Category</th>
-                                <th>Stock</th>
-                                <th>Available Stock</th>
-                                <th>Children</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($books as $book)
-                            <tr>
-                                <td>{{ $book->id }}</td>
-                                <td>{{ $book->title }}</td>
-                                <td>{{ $book->isbn }}</td>
-                                <td>{{ $book->category->title }}</td>
-                                <td>{{ $book->stock }}</td>
-                                <td>{{ $book->available_stock }}</td>
-                                <td>
-                                    @if($book->children->isNotEmpty())
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Book ID</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($book->children as $child)
-                                                    <tr>
-                                                        <td>{{ $child->id }}</td>
-                                                        <td>{{ $child->status }}</td>
-                                                    </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    @else
-                                    No Children
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table> --}}
                 </div>
             </div>
     </div>
